@@ -120,19 +120,11 @@ async fn main() -> anyhow::Result<()> {
 }
 
 fn handle_event(data: SampleData) {
-    println!("-------");
-    println!(
-        "{}: {} {}: {}",
-        "pid".yellow().bold(),
-        data.pid,
-        "tid".yellow().bold(),
-        data.tid
-    );
+    println!("{}","---------------------".yellow());
+    let mut ttp:u64=0;
     for (i, reg) in data.regs.iter().enumerate() {
-        print!("{:>5}: 0x{:016x} ", arch::id_to_str(i).bold().blue(), reg);
-        if (i + 1) % 4 == 0 {
-            println!();
-        }
+        if (i==30){ttp=*reg;}
+        else if (i==32){print!("          {:010x}     {:010x}", reg, ttp);}
     }
     if data.regs.len() % 4 != 0 {
         println!();
