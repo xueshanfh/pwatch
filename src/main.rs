@@ -129,7 +129,7 @@ fn handle_event(data: SampleData) {
         data.tid
     );
     for (i, reg) in data.regs.iter().enumerate() {
-        print!("{:>5}: 0x{:016x} ", arch::id_to_str(i).bold().blue(), reg);
+        print!("{:>5}: {:016x} ", arch::id_to_str(i).bold().blue(), reg);
         if (i + 1) % 4 == 0 {
             println!();
         }
